@@ -14,4 +14,4 @@ Over time, I will be making modifications to this repo to support things like Sw
 
 Be on the look out! :)
 
-![Simulator Screenshot - iPhone 14 Pro - 2023-07-15 at 15 33 36](https://github.com/snappsengineering/snappytemplate/assets/70961666/65ad6c34-2b72-45e7-bbb6-a509ae738dd9)
+[se_nav.pdf](https://github.com/snappsengineering/snappytemplate/files/12062954/se_nav.pdf)
