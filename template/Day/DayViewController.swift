@@ -12,16 +12,12 @@ protocol DayView: View {
 
 class DayViewController: UIViewController {
     
-    private enum Insets {
-        static let tableView = UIEdgeInsets(top: 0, left: 16, bottom: 16, right: 16)
-    }
-    
     private enum Sizes {
         static let stackViewSpacing: CGFloat = 8
-        static let cornerRadius: CGFloat = 20
     }
     
     private var dayHeaderView = DayHeaderView()
+    private let scrollView = UIScrollView()
     private let stackView = UIStackView.make().with(spacing: Sizes.stackViewSpacing)
         
     var presenter: DayPresenter?
@@ -58,9 +54,16 @@ class DayViewController: UIViewController {
     }
     
     private func setupSubviews() {
+        view.addSubviewWithoutAutoLayout(scrollView)
+        scrollView.addSubviewWithoutAutoLayout(stackView)
+        stackView.addArrangedSubviews([
+            // Add subviews to stack
+            dayHeaderView
+        ])
     }
     
     private func setupConstraints() {
+        scrollView.edgesToSuperview(usingSafeArea: true)
     }
     
     private func updateView() {
@@ -70,9 +73,3 @@ class DayViewController: UIViewController {
 }
 
 extension DayViewController: DayView {}
-
-extension DayViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return dayHeaderView
-    }
-}

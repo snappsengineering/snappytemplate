@@ -54,7 +54,7 @@ class MainViewController: UIPageViewController {
     private func setupConstraints() {
         // Add constraints to subviews here such as height constraints
         guard let weekPageView = weekPageViewController?.view else { return }
-        weekPageView.height(65)
+        weekPageView.height(75)
         stackView.edgesToSuperview(usingSafeArea: true)
     }
     

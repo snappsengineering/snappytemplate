@@ -21,7 +21,7 @@ struct WeekBannerViewModel: Equatable {
 class WeekBannerView: UIView {
     
     private enum Insets {
-        static let stackView = UIEdgeInsets.zero
+        static let stackView = UIEdgeInsets(top: 16, left: 0, bottom: 16, right: 0)
     }
 
     private let stackView = UIStackView.make().with(axis: .horizontal).with(distribution: .fillEqually)

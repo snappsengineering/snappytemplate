@@ -27,12 +27,11 @@ class WeekDayItem: UIView {
     }
     
     private var topLabel = UILabel.make().with(font: Fonts.avenirNextBold.makeUIFont(size: 18))
-    private var bottomLabel = UILabel.make().with(font: Fonts.avenirNextMedium.makeUIFont(size: 16))
+    private var bottomLabel = UILabel.make().with(font: Fonts.avenirNextBold.makeUIFont(size: 16))
     private lazy var itemButton = UIButton.make { [weak self] in
         guard let viewModel = self?.viewModel else { return }
         viewModel.buttonAction(viewModel.date)
     }
-    private let stackView = UIStackView.make().with(alignment: .center)
     
     // MARK: Init
     
@@ -55,18 +54,26 @@ class WeekDayItem: UIView {
     private func setupView() {}
     
     private func setupSubviews() {
-        addSubviewWithoutAutoLayout(stackView)
-        stackView.addArrangedSubviews(
-            [
-                topLabel,
-                bottomLabel
-            ]
-        )
+        addSubviewWithoutAutoLayout(topLabel)
+        addSubviewWithoutAutoLayout(bottomLabel)
         addSubviewWithoutAutoLayout(itemButton)
     }
     
     private func setupConstraints() {
-        stackView.edgesToSuperview()
+        NSLayoutConstraint.activate([
+            topLabel.topAnchor.constraint(equalTo: topAnchor),
+            topLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            topLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            topLabel.bottomAnchor.constraint(equalTo: bottomLabel.topAnchor, constant: 4),
+            
+            bottomLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            bottomLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            bottomLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
+        ])
+        
+        topLabel.setContentHuggingPriority(.required, for: .vertical)
+        bottomLabel.setContentHuggingPriority(.required, for: .vertical)
+        
         itemButton.edgesToSuperview()
     }
     
