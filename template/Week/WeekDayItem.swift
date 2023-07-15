@@ -93,8 +93,8 @@ class WeekDayItem: UIView {
         bottomLabel.text = viewModel.date.dayOfMonth()
         
         if viewModel.date.isToday() {
-            topLabel.textColor = .red
-            bottomLabel.textColor = .red
+            topLabel.textColor = .green
+            bottomLabel.textColor = .white
         } else if viewModel.isSelected && !viewModel.date.isToday() {
             topLabel.textColor = .yellow
             bottomLabel.textColor = .white

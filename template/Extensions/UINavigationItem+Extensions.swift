@@ -22,8 +22,8 @@ extension UINavigationItem {
         self.titleView = navLabel
     }
     
-    func setImage() {
-        let image = UIImage(named: "se_nav")
+    func setImage(isContrast: Bool = false) {
+        let image = UIImage(named: isContrast ? "se_nav_contrast" : "se_nav")
         self.titleView = UIImageView(image: image)
     }
 }

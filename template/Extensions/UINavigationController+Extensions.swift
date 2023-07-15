@@ -17,7 +17,6 @@ extension UINavigationController {
     
     func setupBlackNavigationBar() {
         navigationBar.barTintColor = .black
-        navigationBar.shadowImage = UIImage()
         navigationBar.isTranslucent = false
     }
 }

@@ -23,7 +23,7 @@ class DayHeaderView: UIView {
         .with(font: Fonts.avenirNextBold.makeUIFont(size: 28))
     private var dateLabel = UILabel.make()
         .with(textColor: .white)
-        .with(font: Fonts.avenirNextRegular.makeUIFont(size: 20))
+        .with(font: Fonts.avenirNextBold.makeUIFont(size: 20))
     private let stackView = UIStackView.make()
     
     var viewModel: DayHeaderViewModel? {

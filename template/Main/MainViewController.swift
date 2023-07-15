@@ -68,4 +68,18 @@ class MainViewController: UIPageViewController {
     func updateDayPageView(with selectedDate: Date) {
         dayPageViewController?.update(with: selectedDate)
     }
+    
+    func didToggleCalendar() {
+        guard let weekPageViewController = weekPageViewController,
+        let weekView = weekPageViewController.view else { return }
+        
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            weekView.isHidden.toggle()
+            weekView.alpha = weekView.isHidden ? 0 : 1
+            
+            self?.navigationItem.setImage(isContrast: weekView.isHidden)
+
+            self?.stackView.layoutIfNeeded()
+        }
+    }
 }
