@@ -13,7 +13,7 @@ protocol WeekView: View {
 class WeekViewController: UIViewController {
     
     private enum Insets {
-        static let bannerInsets = UIEdgeInsets.zero
+        static let bannerInsets = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
     }
     
     private let weekBannerView = WeekBannerView()

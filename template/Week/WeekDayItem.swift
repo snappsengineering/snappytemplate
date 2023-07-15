@@ -26,8 +26,14 @@ class WeekDayItem: UIView {
         }
     }
     
-    private var topLabel = UILabel.make().with(font: Fonts.avenirNextBold.makeUIFont(size: 18))
-    private var bottomLabel = UILabel.make().with(font: Fonts.avenirNextBold.makeUIFont(size: 16))
+    private var topLabel = UILabel.make()
+        .with(font: Fonts.avenirNextBold.makeUIFont(size: 18))
+        .with(textAlignment: .center)
+    
+    private var bottomLabel = UILabel.make()
+        .with(font: Fonts.avenirNextBold.makeUIFont(size: 16))
+        .with(textAlignment: .center)
+    
     private lazy var itemButton = UIButton.make { [weak self] in
         guard let viewModel = self?.viewModel else { return }
         viewModel.buttonAction(viewModel.date)
@@ -51,7 +57,11 @@ class WeekDayItem: UIView {
         setupConstraints()
     }
     
-    private func setupView() {}
+    private func setupView() {
+        backgroundColor = .lightGray
+        layer.cornerRadius = 8
+        clipsToBounds = true
+    }
     
     private func setupSubviews() {
         addSubviewWithoutAutoLayout(topLabel)
@@ -81,12 +91,13 @@ class WeekDayItem: UIView {
         guard let viewModel = viewModel else { return }
         topLabel.text = viewModel.date.shortDayOfWeek().lowercased()
         bottomLabel.text = viewModel.date.dayOfMonth()
+        
         if viewModel.date.isToday() {
-            topLabel.textColor = .blue
-            bottomLabel.textColor = .lightGray
+            topLabel.textColor = .red
+            bottomLabel.textColor = .red
         } else if viewModel.isSelected && !viewModel.date.isToday() {
             topLabel.textColor = .yellow
-            bottomLabel.textColor = .lightGray
+            bottomLabel.textColor = .white
         } else {
             topLabel.textColor = .darkGray
             bottomLabel.textColor = .darkGray

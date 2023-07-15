@@ -15,11 +15,15 @@ struct DayHeaderViewModel: Equatable {
 class DayHeaderView: UIView {
     
     private enum Insets {
-        static let stackView = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
+        static let stackView = UIEdgeInsets(top: 16, left: 16, bottom: -16, right: -16)
     }
     
-    private var dayLabel = UILabel.make().with(textColor: .white).with(font: Fonts.avenirNextBold.makeUIFont(size: 28))
-    private var dateLabel = UILabel.make().with(textColor: .gray).with(font: Fonts.avenirNextRegular.makeUIFont(size: 20))
+    private var dayLabel = UILabel.make()
+        .with(textColor: .white)
+        .with(font: Fonts.avenirNextBold.makeUIFont(size: 28))
+    private var dateLabel = UILabel.make()
+        .with(textColor: .white)
+        .with(font: Fonts.avenirNextRegular.makeUIFont(size: 20))
     private let stackView = UIStackView.make()
     
     var viewModel: DayHeaderViewModel? {
@@ -42,8 +46,13 @@ class DayHeaderView: UIView {
     }
     
     private func commonInit() {
+        setupView()
         setupSubviews()
         setupConstraints()
+    }
+    
+    private func setupView() {
+        backgroundColor = .lightGray
     }
     
     private func setupSubviews() {
@@ -63,6 +72,6 @@ class DayHeaderView: UIView {
         guard let viewModel = viewModel else { return }
         dayLabel.text = viewModel.dayString
         dateLabel.text = viewModel.dateString
-        dayLabel.textColor = viewModel.isToday ? .blue : .white
+        dayLabel.textColor = viewModel.isToday ? .green : .yellow
     }
 }

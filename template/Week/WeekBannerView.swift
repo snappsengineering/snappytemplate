@@ -21,10 +21,12 @@ struct WeekBannerViewModel: Equatable {
 class WeekBannerView: UIView {
     
     private enum Insets {
-        static let stackView = UIEdgeInsets(top: 16, left: 0, bottom: 16, right: 0)
+        static let stackView = UIEdgeInsets(top: 16, left: 16, bottom: -16, right: -16)
     }
 
-    private let stackView = UIStackView.make().with(axis: .horizontal).with(distribution: .fillEqually)
+    private let stackView = UIStackView.make()
+        .with(axis: .horizontal)
+        .with(distribution: .fillEqually)
     
     var viewModel: WeekBannerViewModel? {
         didSet {
@@ -46,8 +48,15 @@ class WeekBannerView: UIView {
     }
     
     private func commonInit() {
+        setupView()
         setupSubviews()
         setupConstraints()
+    }
+    
+    private func setupView() {
+        layer.cornerRadius = 8
+        clipsToBounds = true
+        backgroundColor = .yellow
     }
         
     private func setupSubviews() {

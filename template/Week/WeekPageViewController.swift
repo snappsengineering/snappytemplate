@@ -35,6 +35,7 @@ class WeekPageViewController: UIPageViewController {
         
         setupView()
         setupSubviews()
+        setupConstraints()
     }
     
     private func setupView() {
@@ -45,6 +46,10 @@ class WeekPageViewController: UIPageViewController {
     private func setupSubviews() {
         guard let weekPage = weekPage(for: startDate) else { return }
         setViewControllers([weekPage], direction: .forward, animated: true, completion: nil)
+    }
+    
+    private func setupConstraints() {
+        view.height(100)
     }
 
     private func weekDidChange() {

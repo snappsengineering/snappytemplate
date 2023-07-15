@@ -18,7 +18,8 @@ class DayViewController: UIViewController {
     
     private var dayHeaderView = DayHeaderView()
     private let scrollView = UIScrollView()
-    private let stackView = UIStackView.make().with(spacing: Sizes.stackViewSpacing)
+    private let stackView = UIStackView.make()
+        .with(spacing: Sizes.stackViewSpacing)
         
     var presenter: DayPresenter?
     var viewModel: DayViewModel? {
@@ -50,7 +51,9 @@ class DayViewController: UIViewController {
     }
     
     private func setupView() {
-        
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 8
+        view.clipsToBounds = true
     }
     
     private func setupSubviews() {
@@ -64,6 +67,11 @@ class DayViewController: UIViewController {
     
     private func setupConstraints() {
         scrollView.edgesToSuperview(usingSafeArea: true)
+        stackView.edgesToSuperview()
+        
+        NSLayoutConstraint.activate([
+            stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 1)
+        ])
     }
     
     private func updateView() {

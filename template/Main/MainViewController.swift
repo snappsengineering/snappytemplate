@@ -11,7 +11,8 @@ class MainViewController: UIPageViewController {
     private var weekPageViewController: WeekPageViewController?
     private var dayPageViewController: DayPageViewController?
     
-    private let stackView = UIStackView.make().withNoSpacing()
+    private let stackView = UIStackView.make()
+        .with(spacing: 8)
         
     static func create(navigator: MainNavigatorType) -> MainViewController {
         let mainViewController = MainViewController()
@@ -53,9 +54,7 @@ class MainViewController: UIPageViewController {
     
     private func setupConstraints() {
         // Add constraints to subviews here such as height constraints
-        guard let weekPageView = weekPageViewController?.view else { return }
-        weekPageView.height(75)
-        stackView.edgesToSuperview(usingSafeArea: true)
+        stackView.edgesToSuperview()
     }
     
     private func updateView() {
