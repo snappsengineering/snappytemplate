@@ -17,11 +17,38 @@ class MainViewController: UIPageViewController {
     static func create(navigator: MainNavigatorType) -> MainViewController {
         let mainViewController = MainViewController()
         
+        mainViewController.navigationItem.setImage()
+        
+        let calendarBarButton = UIBarButtonItem(
+            image: UIImage(systemName: "calendar"),
+            style: .plain,
+            target: mainViewController,
+            action: #selector(didToggleCalendar(sender:))
+        )
+        
+        calendarBarButton.tintColor = .red
+        
+        let todayBarButton = UIBarButtonItem(
+            image: UIImage(systemName: "arrow.clockwise.circle"),
+            style: .plain,
+            target: mainViewController,
+            action: #selector(didTapToday(sender:))
+        )
+        
+        todayBarButton.tintColor = .green
+        
+        mainViewController.navigationItem.rightBarButtonItems = [todayBarButton, calendarBarButton]
+        
         // Add configurations for MainViewController here
         mainViewController.dayPageViewController = DayPageViewController.create(navigator: navigator)
         mainViewController.weekPageViewController = WeekPageViewController.create(navigator: navigator)
 
         return mainViewController
+    }
+    
+    @objc func didTapToday(sender: UIBarButtonItem) {
+        updateWeekPageView(with: Date.today)
+        updateDayPageView(with: Date.today)
     }
     
     override func viewDidLoad() {
@@ -69,7 +96,7 @@ class MainViewController: UIPageViewController {
         dayPageViewController?.update(with: selectedDate)
     }
     
-    func didToggleCalendar() {
+    @objc func didToggleCalendar(sender: UIBarButtonItem) {
         guard let weekPageViewController = weekPageViewController,
         let weekView = weekPageViewController.view else { return }
         
